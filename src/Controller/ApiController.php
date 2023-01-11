@@ -59,19 +59,23 @@ class ApiController extends AbstractController
 
         $form->submit((array) json_decode($proto->serializeToJsonString(), true));
 
+        $baseDomain = $this->getParameter('app.base_host');
+
         if ($form->isSubmitted() && $form->isValid()) {
             $shortUrl = $this->shortener->generateShortUrl($form);
+
+            $path = $this->generateUrl(
+                'app_short',
+                [
+                    'short' => $shortUrl->getShortUrl(),
+                ],
+                UrlGeneratorInterface::RELATIVE_PATH
+            );
 
             $proto = new ShortUrl(
                 [
                     'success' => true,
-                    'shortUrl' => $this->generateUrl(
-                        'app_short',
-                        [
-                            'short' => $shortUrl->getShortUrl(),
-                        ],
-                        UrlGeneratorInterface::ABSOLUTE_URL
-                    ),
+                    'shortUrl' => sprintf('https://%s/%s', $baseDomain, $path),
                 ]
             );
 
