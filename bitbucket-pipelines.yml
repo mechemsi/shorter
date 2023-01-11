@@ -1,0 +1,97 @@
+image: atlassian/default-image:3
+
+options:
+    docker: true
+    size: 2x
+
+pipelines:
+    default:
+#        - parallel:
+#              fail-fast: true
+#              steps:
+        - step:
+            name: Tests/Coverage/PhpStan/Coding style
+            script:
+                - cp .env.test .env
+                - docker-compose -v
+                - docker-compose -f docker-compose-ci.yml build
+                - docker-compose -f docker-compose-ci.yml up -d
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm composer install --prefer-dist --no-progress --no-interaction
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force --env=test
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept run --html codeception.html
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept run --coverage --coverage-xml --coverage-html
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/phpcs --standard=phpcs.xml --report=json --ignore=*/_output/*  --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests > phpcs.json
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm php phpcpd.phar --fuzzy src > phpcpd.txt
+                #- docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm php phpcpd.phar --fuzzy tests > phpcpd-test.txt
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/ecs check
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/phpmd src,tests,vendor html phpmd.xml --exclude tests/_data,tests/_output,tests/_support/_generated,vendor --reportfile report.html
+                - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm vendor/bin/phpstan analyze --error-format=json -c phpstan.neon src tests > phpstan.json
+            artifacts:
+                - tests/_output/**
+                - phpcs.json
+                - phpcpd.txt
+                - phpcpd-test.txt
+                - report.html
+                - phpstan.json
+
+#                  - step:
+#                        name: Phan
+#                        size: 2x
+#                        artifacts:
+#                            - phan.html
+#                        script:
+#                            - docker-compose -v
+#                            - docker-compose -f docker-compose-ci.yml build
+#                            - docker-compose -f docker-compose-ci.yml up -d
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm composer install --prefer-dist --no-progress --no-interaction
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force --env=test
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept build
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/phan -m html -o phan.html
+#                  - step:
+#                        name: PHPStan
+#                        artifacts:
+#                            - phpstan.json
+#                        script:
+#                            - docker-compose -v
+#                            - docker-compose -f docker-compose-ci.yml build
+#                            - docker-compose -f docker-compose-ci.yml up -d
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm composer install --prefer-dist --no-progress --no-interaction
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force --env=test
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept build
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm vendor/bin/phpstan analyze --error-format=json -c phpstan.neon src tests > phpstan.json
+#                  - step:
+#                        name: Psalm
+#                        artifacts:
+#                            - psalm-report.xml
+#                        script:
+#                            - docker-compose -v
+#                            - docker-compose -f docker-compose-ci.yml build
+#                            - docker-compose -f docker-compose-ci.yml up -d
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm composer install --prefer-dist --no-progress --no-interaction
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force --env=test
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept build
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/psalm --show-info=true --output-format=xml > psalm-report.xml
+#                  - step:
+#                        name: PHP coding style
+#                        artifacts:
+#                            - phpcs.json
+#                            - phpcpd.txt
+#                            - phpcpd-test.txt
+#                            - report.html
+#                        script:
+#                            - docker-compose -v
+#                            - docker-compose -f docker-compose-ci.yml build
+#                            - docker-compose -f docker-compose-ci.yml up -d
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm composer install --prefer-dist --no-progress --no-interaction
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm bin/console doctrine:schema:update --force --env=test
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/codecept build
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/phpcs --standard=phpcs.xml --report=json --ignore=*/_output/*  --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests > phpcs.json
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm php phpcpd.phar --fuzzy src > phpcpd.txt
+#                            #- docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm php phpcpd.phar --fuzzy tests > phpcpd-test.txt
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/ecs check
+#                            - docker-compose -f docker-compose-ci.yml exec --user=www-data -T php-fpm ./vendor/bin/phpmd src,tests,vendor html phpmd.xml --exclude tests/_data,tests/_output,tests/_support/_generated,vendor --reportfile report.html

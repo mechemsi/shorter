@@ -1,0 +1,14 @@
+# Codeception Test Suite Configuration
+#
+# Suite for unit or integration tests.
+
+actor: UnitTester
+modules:
+    enabled:
+        - Asserts
+        - \App\Tests\Helper\Unit
+        - Redis:
+              host: 'redis'
+              port: 6379
+              database: 0
+              cleanupBefore: 'never'

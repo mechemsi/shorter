@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package Shortener.ShortUrl.Form;
+
+message ShortUrlForm {
+  string longUrl = 1;
+}

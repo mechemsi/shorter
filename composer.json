@@ -1,0 +1,145 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4",
+        "ext-ctype": "*",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-mysqli": "*",
+        "ext-pdo_mysql": "*",
+        "ext-redis": "*",
+        "doctrine/doctrine-bundle": "2.7.*",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.14",
+        "google/protobuf": "^3.21",
+        "nelmio/cors-bundle": "^2.2",
+        "predis/predis": "^1.0",
+        "sensio/framework-extra-bundle": "^6.2",
+        "snc/redis-bundle": "^4.3",
+        "symfony/console": "5.4.*",
+        "symfony/dotenv": "5.4.*",
+        "symfony/flex": "^1.17|^2",
+        "symfony/form": "5.4.*",
+        "symfony/framework-bundle": "5.4.*",
+        "symfony/runtime": "5.4.*",
+        "symfony/security-bundle": "5.4.*",
+        "symfony/twig-bundle": "5.4.*",
+        "symfony/validator": "5.4.*",
+        "symfony/yaml": "5.4.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.2",
+        "codeception/module-asserts": "^2.0",
+        "codeception/module-doctrine2": "^2.0",
+        "codeception/module-phpbrowser": "^2.0",
+        "codeception/module-redis": "^1.4",
+        "codeception/module-rest": "^2.0",
+        "codeception/module-symfony": "^2.1",
+        "doctrine/coding-standard": "^11.0",
+        "dq5studios/psalm-junit": "^3.0",
+        "drenso/phan-extensions": "^3.5",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "mayflower/mo4-coding-standard": "^9.0",
+        "phan/phan": "^5.4",
+        "php-standard-library/psalm-plugin": "^1.1",
+        "phpmd/phpmd": "^2.13",
+        "phpmetrics/phpmetrics": "^2.8",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-doctrine": "^1.3",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpstan/phpstan-strict-rules": "^1.4",
+        "phpstan/phpstan-symfony": "^1.2",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "psalm/plugin-symfony": "^5.0",
+        "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "^8.7",
+        "squizlabs/php_codesniffer": "^3.7",
+        "symfony/debug-bundle": "5.4.*",
+        "symfony/maker-bundle": "^1.43",
+        "symfony/phpunit-bridge": "^6.2",
+        "symfony/web-profiler-bundle": "5.4.*",
+        "symplify/easy-coding-standard": "^11.0",
+        "vimeo/psalm": "^5.4",
+        "weirdan/doctrine-psalm-plugin": "^2.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "GPBMetadata\\": "proto/GPBMetadata/",
+            "Shortener\\": "proto/Shortener/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/_support",
+            "App\\Tests\\Helper\\": "tests/_support/Helper",
+            "App\\Tests\\Unit\\": "tests/unit",
+            "App\\Tests\\Api\\": "tests/api"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*"
+    },
+    "scripts": {
+        "check-style": "vendor/bin/phpcs -p --standard=phpcs.xml  --ignore=*/_output/*  --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "vendor/bin/phpcbf -p --standard=phpcs.xml --ignore=*/_output/* --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1  src tests",
+        "phpstan": "vendor/bin/phpstan analyze --error-format=table -c phpstan.neon src tests",
+        "phan": "./vendor/bin/phan -m html -o phan.html",
+        "psalm": "./vendor/bin/psalm --show-info=true",
+        "generate-proto": "./bin/proto.sh",
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix src && vendor/bin/php-cs-fixer fix tests",
+        "add-line": "bin/add-line tests && bin/add-line src",
+        "add-license": "bin/add-license tests && bin/add-license src",
+        "phpcpd": "php phpcpd.phar --fuzzy",
+        "ecs": "./vendor/bin/ecs check",
+        "metrics": "php ./vendor/bin/phpmetrics --report-html=myreport.html --exclude tests/_data,tests/_output,tests/_support/_generated  src,tests",
+        "phpmd": "vendor/bin/phpmd src,tests,vendor html phpmd.xml --exclude tests/_data,tests/_output,tests/_support/_generated,vendor --reportfile report.html",
+        "coverage": "php vendor/bin/codecept run --coverage --coverage-xml --coverage-html",
+        "codecept": "./vendor/bin/codecept run ",
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.4.*"
+        }
+    }
+}

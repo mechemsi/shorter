@@ -1,0 +1,37 @@
+includes:
+    #- rules.neon
+parameters:
+    level: max
+    checkGenericClassInNonGenericObjectType: false
+    scanDirectories:
+        #- tests/_support/Helper
+    excludePaths:
+        - *.html.php
+        - *.json.php
+        - src/Composer/ScriptHandler.php
+        - proto/*
+        - tests/_data/*
+        - tests/_output/*
+        #- tests/_support/*.php
+        - tests/_support/_generated/*
+        - tests/bootstrap.php
+    doctrine:
+        objectManagerLoader: tests/ObjectManager.php
+        allowNullablePropertyForRequiredField: true
+        allCollectionsSelectable: true
+    ignoreErrors:
+        # Ignore a Symfony issue for <Bundle>Extension classes
+        #- '#Parameter \#1 \$configTree of method Symfony\\Component\\Config\\Definition\\Processor(.)+#'
+        # Same issue as above but for Configuration classes in Bundles
+        #- '#(.)+should return Symfony\\Component\\Config\\Definition\\Builder\\TreeBuilder but returns(.)+#'
+        # Ignore composer usage of classes like: IOInterface, Event etc (they not a part of any project)
+        #- '#Composer(.)+#'
+        # Ignore Symfony expects or given (can be multiple args or mixed in annotations)
+        # Especially affects interfaces because they can be nonstrict and implementation can be different
+        #- '#(Symfony\w|\W.*(expects|given))#'
+        #- '#RetryableException is not subtype of Throwable#'
+        #- '#Construct empty\(\) is not allowed#'
+        #- message: '#Property [a-zA-Z0-9\\_]+::\$[a-zA-Z]+ is never written, only read.#'
+        #  path: src/Entity/*
+        #- message: '#Property [a-zA-Z0-9\\_]+::\$[a-zA-Z]+ type mapping mismatch: property can contain Doctrine\\Common\\Collections\\Collection but database expects Doctrine\\Common\\Collections\\Collection\&iterable\<[a-zA-Z0-9\\_]+\>.#'
+        #  path: src/Entity/*

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package Shortener.ShortUrl;
+
+message ShortUrl {
+  bool success = 1;
+  string shortUrl = 2;
+}

@@ -1,0 +1,50 @@
+###> symfony/framework-bundle ###
+/.env
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+###/phpcs.xml###
+###< squizlabs/php_codesniffer ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+.bash_history
+
+.composer/cache
+.pdepend
+.cache
+.composer
+/tests/_output/*
+
+/docker/db
+/docker/logs
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
+
+report.html
+phan.html
+psalm_junit_report.xml
+phpstan.html
+phpstan.json
+codeception.html
+psalm-report.xml
+phpcs.json
+phpcpd.txt
+phpcpd-test.txt
