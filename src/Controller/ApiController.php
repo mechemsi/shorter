@@ -31,9 +31,9 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/generate", name="app_api_generate", host="api.%app.base_host%", env="prod", methods={"POST"})
-     * @Route("/generate", name="app_api_generate_dev", env="dev", methods={"POST"})
-     * @Route("/generate", name="app_generate", env="test", methods={"POST"})
+     * @Route("/generate", name="app_api_generate", host="api.%app.base_host%", methods={"POST"}, env="prod")
+     * @Route("/generate", name="app_api_generate_dev", methods={"POST"}, env="dev")
+     * @Route("/generate", name="app_generate", methods={"POST"}, env="test")
      *
      * @param Request $request
      *
@@ -92,9 +92,9 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/health", name="app_api_health", host="api.%app.base_host%", env="prod", methods={"GET"})
-     * @Route("/health", name="app_api_health_dev", env="dev", methods={"GET"})
-     * @Route("/health", name="app_health", env="test", methods={"GET"})
+     * @Route("/health", name="app_api_health", host="api.%app.base_host%", methods={"GET"}, env="prod")
+     * @Route("/health", name="app_api_health_dev", methods={"GET"}, env="dev")
+     * @Route("/health", name="app_health", methods={"GET"}, env="test")
      *
      * @return JsonResponse
      */
