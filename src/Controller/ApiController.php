@@ -75,7 +75,7 @@ class ApiController extends AbstractController
             $proto = new ShortUrl(
                 [
                     'success' => true,
-                    'shortUrl' => sprintf('https://%s/%s', $baseDomain, $path),
+                    'shortUrl' => sprintf('https://%s/%s', strval($baseDomain), $path),
                 ]
             );
 
