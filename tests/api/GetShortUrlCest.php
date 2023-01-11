@@ -32,7 +32,7 @@ class GetShortUrlCest
         $urls = explode('/', strval($response['shortUrl']));
         $tester->stopFollowingRedirects();
         $tester->sendGet('/' . end($urls));
-        $tester->seeResponseCodeIs(307);
+        $tester->seeResponseCodeIs(301);
         $tester->seeHttpHeader('Location', 'https://google.com');
 
         $tester->clearEntityManager();
