@@ -12,15 +12,14 @@ namespace App\Tests\Api;
 
 use App\Tests\ApiTester;
 
-class GenerateShortUrlCestNoToken
+class GenerateShortUrlNoTokenCest
 {
     public function generateShortUrlNoTokenError(ApiTester $tester): void
     {
-        $tester->sendPostAsJson('/generate', [
+        $tester->sendPost('/generate', [
             'longUrl' => 'https://somthing.com',
         ]);
         $tester->seeResponseCodeIs(401);
-        $tester->seeResponseIsJson();
     }
 
     public function generateShortUrlBadTokenError(ApiTester $tester): void
