@@ -54,7 +54,8 @@ class UrlShortener
         ]);
 
         if (null !== $short) {
-            $short->setClicks(intval($short->getClicks()) + 1);
+            $increase = intval($short->getClicks()) + 1;
+            $short->setClicks($increase);
             $this->shortUrlRepository->add($short, true);
         }
 
