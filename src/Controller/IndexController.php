@@ -52,6 +52,11 @@ class IndexController extends AbstractController
             throw $this->createNotFoundException('The link does not exist');
         }
 
-        return $this->redirect($shortUrl->getLongUrl(), RedirectResponse::HTTP_MOVED_PERMANENTLY);
+        $response = $this->redirect($shortUrl->getLongUrl(), RedirectResponse::HTTP_MOVED_PERMANENTLY);
+
+        $response->setPrivate();
+        $response->setMaxAge(90);
+
+        return $response;
     }
 }

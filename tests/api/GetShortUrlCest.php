@@ -33,6 +33,7 @@ class GetShortUrlCest
         $tester->stopFollowingRedirects();
         $tester->sendGet('/' . end($urls));
         $tester->seeResponseCodeIs(301);
+        $tester->seeHttpHeader('Cache-Control', 'max-age=90, private');
         $tester->seeHttpHeader('Location', 'https://google.com');
 
         $tester->clearEntityManager();
