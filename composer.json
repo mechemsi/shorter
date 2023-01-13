@@ -3,6 +3,12 @@
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "https://github.com/mechemsi/phpinsights"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-ctype": "*",
@@ -49,6 +55,7 @@
         "drenso/phan-extensions": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.13",
         "mayflower/mo4-coding-standard": "^9.0",
+        "nunomaduro/phpinsights": "^2.6",
         "phan/phan": "^5.4",
         "php-standard-library/psalm-plugin": "^1.1",
         "phpmd/phpmd": "^2.13",
