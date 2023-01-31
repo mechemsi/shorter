@@ -8,7 +8,13 @@ return [
         'tests/_output',
         'tests/_data',
         'tests/_support/_generated',
-        'proto'
+        'proto',
+        'vendor',
+        'var',
+        'config',
+        'ecs.php',
+        'phpinsights.php',
+        'public',
     ],
     'add' => [
         //  ExampleMetric::class => [

@@ -28,7 +28,6 @@ use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
-use PhpCsFixer\Fixer\Phpdoc\PhpdocLineSpanFixer;
 
 return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([
@@ -128,6 +127,6 @@ return static function (ECSConfig $ecsConfig): void {
         NativeFunctionInvocationFixer::class => null,
         NoSuperfluousPhpdocTagsFixer::class => null,
         ArrayOpenerAndCloserNewlineFixer::class => null,
-        PhpdocLineSpanFixer::class => null,
+        \PhpCsFixer\Fixer\Phpdoc\PhpdocLineSpanFixer::class => null,
     ]);
 };

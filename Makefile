@@ -35,3 +35,4 @@ run-static:
 	docker-compose exec --user=www-data php-fpm composer ecs
 	docker-compose exec --user=www-data php-fpm composer phpcpd src
 	docker-compose exec --user=www-data php-fpm composer phpmd
+	docker-compose exec --user=www-data php-fpm composer phpinsights
