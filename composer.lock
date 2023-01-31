@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a033906fcc3fd4eb42c0f75a71bf9983",
+    "content-hash": "a887e7bd011090b09db51c1c3d35ceeb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -8661,16 +8661,16 @@
         },
         {
             "name": "nunomaduro/phpinsights",
-            "version": "v2.6.2",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mechemsi/phpinsights.git",
-                "reference": "c6294e5c9268af6d52c5d87e515893a29ebc9bc9"
+                "url": "https://github.com/nunomaduro/phpinsights.git",
+                "reference": "3a2f02cadcd1be920eed19814798810944698c51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mechemsi/phpinsights/zipball/c6294e5c9268af6d52c5d87e515893a29ebc9bc9",
-                "reference": "c6294e5c9268af6d52c5d87e515893a29ebc9bc9",
+                "url": "https://api.github.com/repos/nunomaduro/phpinsights/zipball/3a2f02cadcd1be920eed19814798810944698c51",
+                "reference": "3a2f02cadcd1be920eed19814798810944698c51",
                 "shasum": ""
             },
             "require": {
@@ -8726,54 +8726,7 @@
                     "NunoMaduro\\PhpInsights\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "website:copy-changelog": [
-                    "@php -r \"copy('CHANGELOG.md', 'docs/changelog.md');\""
-                ],
-                "website:copy-logo": [
-                    "@php -r \"(is_dir('docs/.vuepress/public') || mkdir('docs/.vuepress/public')) && copy('art/logo_mixed.gif', 'docs/.vuepress/public/logo.gif') && copy('art/heart.svg', 'docs/.vuepress/public/heart.svg') && copy('art/heart.png', 'docs/.vuepress/public/heart.png');\""
-                ],
-                "csfixer:test": [
-                    "php-cs-fixer fix -v"
-                ],
-                "phpstan:test": [
-                    "phpstan analyse --ansi"
-                ],
-                "phpunit:test": [
-                    "phpunit --colors=always"
-                ],
-                "rector:test": [
-                    "rector process --ansi"
-                ],
-                "insights": [
-                    "bin/phpinsights analyse --ansi -v --no-interaction"
-                ],
-                "test": [
-                    "@phpstan:test",
-                    "@csfixer:test --dry-run",
-                    "@rector:test --dry-run",
-                    "@phpunit:test",
-                    "@insights"
-                ],
-                "fix": [
-                    "@csfixer:test",
-                    "@insights --fix --quiet",
-                    "@rector:test"
-                ],
-                "post-install-cmd": [
-                    "@website:copy-changelog",
-                    "@website:copy-logo"
-                ],
-                "post-update-cmd": [
-                    "@website:copy-changelog",
-                    "@website:copy-logo"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -8785,31 +8738,32 @@
             ],
             "description": "Instant PHP quality checks from your console.",
             "keywords": [
+                "Insights",
                 "code",
                 "console",
-                "insights",
                 "php",
                 "quality",
                 "source"
             ],
             "support": {
-                "source": "https://github.com/mechemsi/phpinsights/tree/v2.6.2"
+                "issues": "https://github.com/nunomaduro/phpinsights/issues",
+                "source": "https://github.com/nunomaduro/phpinsights/tree/v2.7.0"
             },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/nunomaduro"
+                    "url": "https://github.com/JustSteveKing",
+                    "type": "github"
                 },
                 {
-                    "type": "github",
-                    "url": "https://github.com/cmgmyr"
+                    "url": "https://github.com/cmgmyr",
+                    "type": "github"
                 },
                 {
-                    "type": "github",
-                    "url": "https://github.com/JustSteveKing"
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
                 }
             ],
-            "time": "2022-11-18T15:08:09+00:00"
+            "time": "2023-01-30T20:28:59+00:00"
         },
         {
             "name": "pdepend/pdepend",

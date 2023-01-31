@@ -4,10 +4,6 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories":[
-        {
-            "type": "vcs",
-            "url": "https://github.com/mechemsi/phpinsights"
-        }
     ],
     "require": {
         "php": ">=7.4",
@@ -126,6 +122,7 @@
         "add-license": "bin/add-license tests && bin/add-license src",
         "phpcpd": "php phpcpd.phar --fuzzy",
         "ecs": "./vendor/bin/ecs check",
+        "phpinsights": "./vendor/bin/phpinsights analyse src && ./vendor/bin/phpinsights analyse tests",
         "metrics": "php ./vendor/bin/phpmetrics --report-html=myreport.html --exclude tests/_data,tests/_output,tests/_support/_generated  src,tests",
         "phpmd": "vendor/bin/phpmd src,tests,vendor html phpmd.xml --exclude tests/_data,tests/_output,tests/_support/_generated,vendor --reportfile report.html",
         "coverage": "php vendor/bin/codecept run --coverage --coverage-xml --coverage-html",
