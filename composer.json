@@ -6,7 +6,7 @@
     "repositories":[
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.1",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-gd": "*",
@@ -21,31 +21,30 @@
         "doctrine/orm": "^2.14",
         "google/protobuf": "^3.21",
         "nelmio/cors-bundle": "^2.2",
-        "predis/predis": "^1.0",
-        "sensio/framework-extra-bundle": "^6.2",
+        "predis/predis": "^2.0",
         "snc/redis-bundle": "^4.3",
         "symfony/apache-pack": "^1.0",
-        "symfony/console": "5.4.*",
-        "symfony/dotenv": "5.4.*",
+        "symfony/console": "^6.0",
+        "symfony/dotenv": "^6.0",
         "symfony/flex": "^1.17|^2",
-        "symfony/form": "5.4.*",
-        "symfony/framework-bundle": "5.4.*",
-        "symfony/runtime": "5.4.*",
-        "symfony/security-bundle": "5.4.*",
-        "symfony/twig-bundle": "5.4.*",
-        "symfony/validator": "5.4.*",
-        "symfony/yaml": "5.4.*",
+        "symfony/form": "^6.0",
+        "symfony/framework-bundle": "^6.0",
+        "symfony/runtime": "^6.0",
+        "symfony/security-bundle": "^6.0",
+        "symfony/twig-bundle": "^6.0",
+        "symfony/validator": "^6.0",
+        "symfony/yaml": "^6.0",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
-        "codeception/codeception": "^4.2",
-        "codeception/module-asserts": "^2.0",
-        "codeception/module-doctrine2": "^2.0",
-        "codeception/module-phpbrowser": "^2.0",
-        "codeception/module-redis": "^1.4",
-        "codeception/module-rest": "^2.0",
-        "codeception/module-symfony": "^2.1",
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-doctrine2": "^3.0",
+        "codeception/module-phpbrowser": "^3.0",
+        "codeception/module-redis": "^3.0",
+        "codeception/module-rest": "^3.0",
+        "codeception/module-symfony": "^3.1",
         "doctrine/coding-standard": "^11.0",
         "dq5studios/psalm-junit": "^3.0",
         "drenso/phan-extensions": "^3.5",
@@ -53,7 +52,7 @@
         "mayflower/mo4-coding-standard": "^9.0",
         "nunomaduro/phpinsights": "^2.6",
         "phan/phan": "^5.4",
-        "php-standard-library/psalm-plugin": "^1.1",
+        "php-standard-library/psalm-plugin": "^2.0",
         "phpmd/phpmd": "^2.13",
         "phpmetrics/phpmetrics": "^2.8",
         "phpstan/extension-installer": "^1.2",
@@ -68,10 +67,10 @@
         "roave/security-advisories": "dev-latest",
         "slevomat/coding-standard": "^8.7",
         "squizlabs/php_codesniffer": "^3.7",
-        "symfony/debug-bundle": "5.4.*",
+        "symfony/debug-bundle": "^6.0",
         "symfony/maker-bundle": "^1.43",
         "symfony/phpunit-bridge": "^6.2",
-        "symfony/web-profiler-bundle": "5.4.*",
+        "symfony/web-profiler-bundle": "^6.0",
         "symplify/easy-coding-standard": "^11.0",
         "vimeo/psalm": "^5.4",
         "weirdan/doctrine-psalm-plugin": "^2.8"
@@ -144,7 +143,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.4.*"
+            "require": "^6.0"
         }
     }
 }
