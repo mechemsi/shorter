@@ -16,7 +16,7 @@
         "ext-mysqli": "*",
         "ext-pdo_mysql": "*",
         "ext-redis": "*",
-        "doctrine/doctrine-bundle": "2.7.*",
+        "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
         "google/protobuf": "^3.21",

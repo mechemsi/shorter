@@ -77,8 +77,10 @@ class UrlShortenerTest extends Unit
 
         $this->shortUrlRepository->expects(self::exactly(2))
             ->method('findOneBy')
-            ->withConsecutive([['longUrl' => $longUrl]], [['shortUrl' => $shortUrl]])
-            ->willReturnOnConsecutiveCalls(null, null);
+            ->willReturnCallback(fn($type) => match ($type) {
+                ['longUrl' => $longUrl] => null,
+                ['shortUrl' => $shortUrl] => null,
+            });
 
         $this->shortUrlRepository->expects(self::once())
             ->method('add')
@@ -110,12 +112,11 @@ class UrlShortenerTest extends Unit
 
         $this->shortUrlRepository->expects(self::exactly(3))
             ->method('findOneBy')
-            ->withConsecutive(
-                [['longUrl' => $longUrl]],
-                [['shortUrl' => $shortUrl]],
-                [['shortUrl' => $shortUrl2]]
-            )
-            ->willReturnOnConsecutiveCalls(null, $short, null);
+            ->willReturnCallback(fn($type) => match ($type) {
+                ['longUrl' => $longUrl] => null,
+                ['shortUrl' => $shortUrl] => $short,
+                ['shortUrl' => $shortUrl2] => null
+            });
 
         $this->shortUrlRepository->expects(self::once())
             ->method('add')

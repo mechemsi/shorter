@@ -25,11 +25,7 @@ class IndexController extends AbstractController
         $this->shortener = $shortener;
     }
 
-    /**
-     * @Route("/", name="app_index", methods={"GET"})
-     *
-     * @return RedirectResponse
-     */
+    #[Route('/', name: 'app_index', methods: ['GET'])]
     public function index(): RedirectResponse
     {
         $redirect = $this->getParameter('app.redirect');
@@ -37,13 +33,7 @@ class IndexController extends AbstractController
         return $this->redirect(strval($redirect), RedirectResponse::HTTP_MOVED_PERMANENTLY);
     }
 
-    /**
-     * @Route("/{short}", name="app_short", methods={"GET"})
-     *
-     * @param string $short
-     *
-     * @return Response
-     */
+    #[Route('/{short}', name: 'app_short', methods: ['GET'])]
     public function shortLink(string $short): Response
     {
         $shortUrl = $this->shortener->getShortUrl($short);

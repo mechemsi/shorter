@@ -30,15 +30,9 @@ class ApiController extends AbstractController
         $this->shortener = $shortener;
     }
 
-    /**
-     * @Route("/generate", name="app_api_generate", host="api.%app.base_host%", methods={"POST"}, env="prod")
-     * @Route("/generate", name="app_api_generate_dev", methods={"POST"}, env="dev")
-     * @Route("/generate", name="app_generate", methods={"POST"}, env="test")
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
+    #[Route('/generate', name: 'app_api_generate', host: 'api.%app.base_host%', methods: ['POST'], env: 'prod')]
+    #[Route('/generate', name: 'app_api_generate_dev', methods: ['POST'], env: 'dev')]
+    #[Route('/generate', name: 'app_generate', methods: ['POST'], env: 'test')]
     public function generate(Request $request): JsonResponse
     {
         $content = strval($request->getContent());
@@ -95,13 +89,9 @@ class ApiController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/health", name="app_api_health", host="api.%app.base_host%", methods={"GET"}, env="prod")
-     * @Route("/health", name="app_api_health_dev", methods={"GET"}, env="dev")
-     * @Route("/health", name="app_health", methods={"GET"}, env="test")
-     *
-     * @return JsonResponse
-     */
+    #[Route('/health', name: 'app_api_health', host: 'api.%app.base_host%', methods: ['GET'], env: 'prod')]
+    #[Route('/health', name: 'app_api_health_dev', methods: ['GET'], env: 'dev')]
+    #[Route('/health', name: 'app_health', methods: ['GET'], env: 'test')]
     public function healthCheck(): JsonResponse
     {
         return new JsonResponse([

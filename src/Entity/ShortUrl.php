@@ -14,38 +14,23 @@ use App\Repository\ShortUrlRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=ShortUrlRepository::class)
- */
+#[ORM\Entity(repositoryClass: ShortUrlRepository::class)]
 class ShortUrl
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
     private int $id;
 
-    /**
-     * @ORM\Column(type="text")
-     *
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
     private string $longUrl;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     private string $shortUrl;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private \DateTime $createdAt;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true, options={"default":0})
-     */
+    #[ORM\Column(type: 'integer', nullable: true, options: ['default' => 0])]
     private ?int $clicks;
 
     public function __construct()
