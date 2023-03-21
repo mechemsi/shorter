@@ -122,7 +122,7 @@
         "phpcpd": "php phpcpd.phar --fuzzy",
         "ecs": "./vendor/bin/ecs check",
         "phpinsights": "./vendor/bin/phpinsights",
-        "metrics": "php ./vendor/bin/phpmetrics --report-html=myreport.html --exclude tests/_data,tests/_output,tests/_support/_generated  src,tests",
+        "metrics": "php ./vendor/bin/phpmetrics --report-html=myreport.html --exclude=tests/_data,tests/_output,tests/_support/_generated  src tests",
         "phpmd": "vendor/bin/phpmd src,tests,vendor html phpmd.xml --exclude tests/_data,tests/_output,tests/_support/_generated,vendor --reportfile report.html",
         "coverage": "php vendor/bin/codecept run --coverage --coverage-xml --coverage-html",
         "codecept": "./vendor/bin/codecept run ",

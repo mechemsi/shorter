@@ -48,3 +48,4 @@ psalm-report.xml
 phpcs.json
 phpcpd.txt
 phpcpd-test.txt
+myreport.html
