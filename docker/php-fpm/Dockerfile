@@ -21,7 +21,7 @@ RUN if [ "$BUILD_ARGUMENT_ENV" = "default" ]; then echo "Set BUILD_ARGUMENT_ENV 
     fi
 
 COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
-COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+#COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY error_reporting.ini /usr/local/etc/php/conf.d/error_reporting.ini
 
 
@@ -68,7 +68,7 @@ RUN pecl install -o -f protobuf
 RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
 RUN pecl install -o -f amqp && docker-php-ext-enable amqp
 
-RUN pecl install xdebug-3.2.0
+#RUN pecl install xdebug-3.2.0
 #RUN docker-php-ext-enable xdebug
 
 # Set timezone
